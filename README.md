@@ -46,6 +46,10 @@ Each run writes `report.html`, `report.md`, `config.json`,
 `transformation_log.json`, `profile.json`, and chart PNGs under `charts/` in the
 output directory.
 
+Columns that look like identifiers — named `id` or ending in `_id`, with a
+different value on (nearly) every row — are treated as row labels, not
+measurements: they are left out of the charts and the correlations.
+
 ## Using it as a library
 
 ```python
@@ -84,6 +88,30 @@ print(results["prediction"]["best_model"])
   prediction. It never returns an improvised result.
 - **Privacy:** nothing leaves the machine. There are no API calls and no model
   downloads; the sample dataset is synthetic.
+
+## Web version
+
+The same pipeline is available as a small website through Streamlit
+(`app.py` in this folder):
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Then open the address Streamlit prints (usually http://localhost:8501),
+pick a sample table or upload a .csv / .xlsx / .xls file, add a question
+and a target column if you want them, and press "Run analysis". The page
+shows the direct answer, the prediction table, and the charts, and offers
+the HTML report and the full output folder as downloads. The analysis is
+the same fixed pipeline with the same seed, so results match the
+command-line version exactly.
+
+To put it on the public web, push this folder to GitHub and deploy
+`app.py` on a Streamlit host (for example Streamlit Community Cloud or
+Hugging Face Spaces). Note the trade-off: on a hosted copy, uploaded
+files are processed on the host's server, so the "nothing leaves your
+machine" property only holds when you run it locally.
 
 ## Tests
 

@@ -1,0 +1,311 @@
+{
+  "reps": 5,
+  "tasks": [
+    {
+      "id": "S1",
+      "dataset": "sales",
+      "desc": "Cleaned row count (sales)",
+      "ground_truth": 240,
+      "agent_values": [
+        240,
+        240,
+        240,
+        240,
+        240
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "S2",
+      "dataset": "sales",
+      "desc": "Mean revenue (sales)",
+      "ground_truth": 5390.0635,
+      "agent_values": [
+        5390.0635,
+        5390.0635,
+        5390.0635,
+        5390.0635,
+        5390.0635
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "S3",
+      "dataset": "sales",
+      "desc": "Mean units sold (sales)",
+      "ground_truth": 20.6417,
+      "agent_values": [
+        20.6417,
+        20.6417,
+        20.6417,
+        20.6417,
+        20.6417
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "S4",
+      "dataset": "sales",
+      "desc": "Correlation units_sold vs revenue (sales)",
+      "ground_truth": 0.6436,
+      "agent_values": [
+        0.6436,
+        0.6436,
+        0.6436,
+        0.6436,
+        0.6436
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "S5",
+      "dataset": "sales",
+      "desc": "Region with highest mean revenue (sales)",
+      "ground_truth": [
+        "South",
+        5903.0086
+      ],
+      "agent_values": [
+        [
+          "South",
+          5903.0086
+        ],
+        [
+          "South",
+          5903.0086
+        ],
+        [
+          "South",
+          5903.0086
+        ],
+        [
+          "South",
+          5903.0086
+        ],
+        [
+          "South",
+          5903.0086
+        ]
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "S6",
+      "dataset": "sales",
+      "desc": "Mean revenue in first month 2024-01-31 (sales trend)",
+      "ground_truth": 5432.9077,
+      "agent_values": [
+        5432.9077,
+        5432.9077,
+        5432.9077,
+        5432.9077,
+        5432.9077
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "S7",
+      "dataset": "sales",
+      "desc": "Most common product category (sales)",
+      "ground_truth": "Furniture",
+      "agent_values": [
+        "Furniture",
+        "Furniture",
+        "Furniture",
+        "Furniture",
+        "Furniture"
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "C1",
+      "dataset": "churn",
+      "desc": "Cleaned row count (churn)",
+      "ground_truth": 300,
+      "agent_values": [
+        300,
+        300,
+        300,
+        300,
+        300
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "C2",
+      "dataset": "churn",
+      "desc": "Overall churn rate (churn)",
+      "ground_truth": 0.33,
+      "agent_values": [
+        0.33,
+        0.33,
+        0.33,
+        0.33,
+        0.33
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "C3",
+      "dataset": "churn",
+      "desc": "Mean tenure months (churn)",
+      "ground_truth": 37.57,
+      "agent_values": [
+        37.57,
+        37.57,
+        37.57,
+        37.57,
+        37.57
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "C4",
+      "dataset": "churn",
+      "desc": "Correlation monthly_spend vs total_spend (churn)",
+      "ground_truth": 0.5546,
+      "agent_values": [
+        0.5546,
+        0.5546,
+        0.5546,
+        0.5546,
+        0.5546
+      ],
+      "reproducible": true,
+      "correct": true
+    },
+    {
+      "id": "C5",
+      "dataset": "churn",
+      "desc": "Plan type with highest churn rate (churn)",
+      "ground_truth": [
+        "Month-to-month",
+        0.5521
+      ],
+      "agent_values": [
+        [
+          "Month-to-month",
+          0.5521
+        ],
+        [
+          "Month-to-month",
+          0.5521
+        ],
+        [
+          "Month-to-month",
+          0.5521
+        ],
+        [
+          "Month-to-month",
+          0.5521
+        ],
+        [
+          "Month-to-month",
+          0.5521
+        ]
+      ],
+      "reproducible": true,
+      "correct": true
+    }
+  ],
+  "predictions": [
+    {
+      "dataset": "sales",
+      "agent_best_model": "Random Forest",
+      "agent_best_test": 0.8333,
+      "per_model": [
+        {
+          "model": "Dummy (baseline)",
+          "agent_test": 0.7083,
+          "reference_test": 0.8333,
+          "match": false
+        },
+        {
+          "model": "Logistic Regression",
+          "agent_test": 0.8333,
+          "reference_test": 0.8333,
+          "match": true
+        },
+        {
+          "model": "Random Forest",
+          "agent_test": 0.8333,
+          "reference_test": 0.8333,
+          "match": true
+        },
+        {
+          "model": "Gradient Boosting",
+          "agent_test": 0.7708,
+          "reference_test": 0.7708,
+          "match": true
+        }
+      ],
+      "reproducible": true
+    },
+    {
+      "dataset": "churn",
+      "agent_best_model": "Random Forest",
+      "agent_best_test": 0.6167,
+      "per_model": [
+        {
+          "model": "Dummy (baseline)",
+          "agent_test": 0.6167,
+          "reference_test": 0.6667,
+          "match": false
+        },
+        {
+          "model": "Logistic Regression",
+          "agent_test": 0.7333,
+          "reference_test": 0.7333,
+          "match": true
+        },
+        {
+          "model": "Random Forest",
+          "agent_test": 0.6167,
+          "reference_test": 0.6333,
+          "match": true
+        },
+        {
+          "model": "Gradient Boosting",
+          "agent_test": 0.6167,
+          "reference_test": 0.6167,
+          "match": true
+        }
+      ],
+      "reproducible": true
+    }
+  ],
+  "report_md5_identical": {
+    "sales": true,
+    "churn": true
+  },
+  "mean_runtime_seconds": {
+    "sales": 3.91,
+    "churn": 4.16
+  },
+  "runtimes": {
+    "sales": [
+      4.41,
+      3.85,
+      3.67,
+      3.77,
+      3.85
+    ],
+    "churn": [
+      4.18,
+      4.18,
+      4.2,
+      4.21,
+      4.04
+    ]
+  }
+}
