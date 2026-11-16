@@ -1,4 +1,4 @@
-# Local, Deterministic Data Analysis Agent for Tabular Data
+#Data Analysis Agent for Tabular Data
 
 A local data analysis agent for a single tabular dataset (CSV or Excel). It runs a
 fixed six-stage pipeline — **profile → clean → analyze → visualize → predict →
@@ -89,7 +89,7 @@ print(results["prediction"]["best_model"])
 - **Privacy:** nothing leaves the machine. There are no API calls and no model
   downloads; the sample dataset is synthetic.
 
-## Web version
+## Website
 
 The same pipeline is available as a small website through Streamlit
 (`app.py` in this folder):
@@ -106,13 +106,6 @@ shows the direct answer, the prediction table, and the charts, and offers
 the HTML report and the full output folder as downloads. The analysis is
 the same fixed pipeline with the same seed, so results match the
 command-line version exactly.
-
-To put it on the public web, push this folder to GitHub and deploy
-`app.py` on a Streamlit host (for example Streamlit Community Cloud or
-Hugging Face Spaces). Note the trade-off: on a hosted copy, uploaded
-files are processed on the host's server, so the "nothing leaves your
-machine" property only holds when you run it locally.
-
 ## Tests
 
 ```bash
