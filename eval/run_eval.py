@@ -1,13 +1,11 @@
 """Head-to-head evaluation harness for the data analysis agent.
 
-Implements the evaluation designed in the revised proposal (Section 4):
+Implements the evaluation designed in the revised proposal:
 
-- An independent reference implementation (written separately from the
-  agent package, straight from the documented cleaning rules) computes
+- An independent reference implementation computes
   ground truth for a fixed task set on the two sample datasets.
 - The agent is run 5 times per dataset. Every task value is extracted
-  from the agent's structured results and compared with ground truth
-  (correctness), across runs (reproducibility), with wall-clock runtime
+  from the agent's structured results and compared with ground truth, across runs, with wall-clock runtime
   recorded per run.
 - Prediction tasks compare the agent's per-model test scores against an
   independently coded run of the same model set under the same protocol
@@ -47,9 +45,9 @@ from agent.pipeline import run_pipeline  # noqa: E402
 def reference_clean(frame: pd.DataFrame) -> pd.DataFrame:
     """Independent implementation of the documented cleaning rules:
     drop exact duplicates; strip text whitespace; unify case variants of
-    a category to its most frequent spelling; coerce numeric/date
-    columns; fill missing numeric with the median and categorical with
-    the mode. Datetime gaps are left unfilled."""
+    a category to its most frequent spelling; 
+    fill missing numeric with the median and categorical with the mode.
+    Date time gaps are left unfilled."""
     df = frame.copy()
     df = df.drop_duplicates().reset_index(drop=True)
 
