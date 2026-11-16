@@ -1,4 +1,4 @@
-"""Cleaning: logged, reversible transformations only.
+"""Cleaning:
 
 The original file is never modified. Every change is appended to the
 transformation log with the rule applied and the number of rows or cells
