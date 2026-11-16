@@ -1,4 +1,4 @@
-"""Versioned pipeline configuration.
+"""Pipeline configuration.
 
 Every run saves its configuration alongside the report, so a result can
 always be traced back to the exact settings that produced it.
@@ -15,9 +15,6 @@ PIPELINE_VERSION = "1.0.0"
 @dataclass
 class AgentConfig:
     """Settings that control one pipeline run.
-
-    The defaults are deliberately fixed: changing them is a conscious,
-    recorded decision, which is what makes runs reproducible.
     """
 
     version: str = PIPELINE_VERSION
