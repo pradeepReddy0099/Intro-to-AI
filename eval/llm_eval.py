@@ -1,35 +1,9 @@
-"""LLM-agent arm of the head-to-head evaluation (revised proposal, Section 4).
+"""LLM-agent arm of the head-to-head evaluation .
 
 This is the LLM comparison arm of that evaluation: the same datasets
 and the same task prompts as the local arm, run at least five times, and
 scored on correctness, reproducibility, failure / hallucination rate,
 runtime, monetary cost, and data exposure.
-
-Design notes (read before claiming more than this arm measures):
-
-- Mode: direct answer. The LLM receives the raw CSV text plus the exact
-  task definitions and returns one JSON object with one value per task.
-  This is an LLM baseline in the style of Data Interpreter / DS-Agent, not
-  a replica of either system: it does not generate and execute code, so
-  prediction-model training is out of scope here. The 12 descriptive
-  tasks (S1-S7, C1-C5) are the scored set, matching the local arm's
-  descriptive table. Prediction tasks stay with the local arm and the
-  auto-sklearn arm.
-- Data exposure is Yes by construction: the CSV text is sent to the
-  provider's API. That is itself one of the measured contrasts with the
-  local agent, and it is why this arm only ever runs on the synthetic
-  sample datasets (or other data the user has explicitly approved).
-- No key, no run. If OPENAI_API_KEY is not set, the script exits with a
-  clear blocked message and writes no scores. --dry-run validates prompt
-  construction, ground truth, and scoring without calling any API, so
-  the harness can be checked for free.
-- Cost: the script records prompt / completion tokens from the API
-  response. Dollar cost is computed only when LLM_PRICE_PER_1K env vars
-  are set (LLM_INPUT_PRICE_PER_1K_USD, LLM_OUTPUT_PRICE_PER_1K_USD);
-  otherwise cost is reported as tokens, and the user reads dollars off
-  the provider's billing page. No price is invented for a model.
-- The API key is read from the environment only. It is never printed,
-  logged, or written to any output file.
 
 Usage (from the project root, with the project venv active):
     python eval/llm_eval.py --dry-run
