@@ -7,7 +7,7 @@ INTENT_RULES = [
     ("predict", ("predict", "forecast")),
     ("trend", ("trend", "over time", "growth", "change")),
     ("correlation", ("correlat", "relationship", "relate", "drives", "drive", "affect", "influence")),
-    ("compare", ("compare", "difference", "between", "group")),
+    ("compare", ("compare", "difference", "between", "group", "highest", "lowest", "largest", "smallest", "maximum", "minimum", "top", "most", "least")),
     ("summary", ("summar", "overview", "describe", "what is")),
 ]
 
@@ -35,6 +35,19 @@ def parse_question(question: str | None, columns: list) -> dict:
 
     lowered = question.lower()
     focus = _find_named_column(lowered, columns)
+    # "Most/least common" asks how often a value occurs, not which group
+    # is biggest, so it is a summary question even though "most"/"least"
+    # are otherwise comparison words.
+    if any(
+        phrase in lowered
+        for phrase in (
+            "most common",
+            "least common",
+            "most frequent",
+            "least frequent",
+        )
+    ):
+        return _result(question, "summary", None, focus, "")
     intent = None
     for name, words in INTENT_RULES:
         if any(word in lowered for word in words):

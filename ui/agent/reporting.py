@@ -98,6 +98,28 @@ def direct_answer(results: dict) -> str:
     if intent == "compare":
         summaries = analysis["group_summaries"]
         if summaries:
+            # Answer about the column the question names, when it has one.
+            # The focus is the longest column name in the question, which
+            # can be the group column (e.g. product_category), so fall back
+            # to the longest numeric column named in the question.
+            value_column = None
+            focus = question_info.get("focus_column")
+            if focus and any(s["value_column"] == focus for s in summaries):
+                value_column = focus
+            else:
+                original = (question_info.get("original") or "").lower()
+                numeric = [
+                    c["name"]
+                    for c in profile["columns"]
+                    if c.get("inferred_type") == "numeric"
+                    and str(c["name"]).lower() in original
+                ]
+                if numeric:
+                    value_column = max(numeric, key=lambda c: len(str(c)))
+            if value_column:
+                focused = [s for s in summaries if s["value_column"] == value_column]
+                if focused:
+                    summaries = focused
             biggest = max(summaries, key=lambda item: item["gap"] or 0)
             return (
                 f"For {biggest['value_column']} grouped by {biggest['group_column']}, "
